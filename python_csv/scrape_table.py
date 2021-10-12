@@ -24,25 +24,25 @@ colPrice = []
 for x in table: 
     rows = table.find_all('tr')
     
-    for row in rows:
-        cells = row.find_all('td')
+for row in rows:
+    cells = row.find_all('td')
 
-        if len(cells)>1:
+    if len(cells) > 1 :
             
-            year = cells[0]
-            colYear.append(int(year.text))
+        year = cells[0]
+        colYear.append(int(year.text))
         
-            make = cells[1]
-            colMake.append(make.text)
+        make = cells[1]
+        colMake.append(make.text)
         
-            model = cells[2]
-            colModel.append(model.text)
+        model = cells[2]
+        colModel.append(model.text)
         
-            desc = cells[3]
-            colDesc.append(desc.text)
+        desc = cells[3]
+        colDesc.append(desc.text)
         
-            price = cells[4]
-            colPrice.append(float(price.text))
+        price = cells[4]
+        colPrice.append(float(price.text))
 
 
 df = pd.DataFrame(colYear, index=None, columns = ['Year']) 
@@ -51,4 +51,4 @@ df['Model'] = colModel
 df['Description'] = colDesc
 df['Price'] = colPrice
 
-print(df)
+df.to_csv('python_car_table.csv', index = False)
